@@ -4,5 +4,7 @@
 }}@endsection
 @section('content')
     @include('_parts/heading')
-    @include('_parts/owner_list')
+    <div class="container">
+        <p class="mt-4">Good {{ $greeting }}</p>
+    </div>
 @endsection

@@ -10,5 +10,6 @@
         <h3 class="mt-3">Our valued customers:</h3>
         @include('_parts/owner_list')
     @endif
+    {{ $owners->links() }}
     </div>
 @endsection

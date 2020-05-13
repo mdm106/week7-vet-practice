@@ -16,7 +16,7 @@
         <a class="nav-link" href="#">Services</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">For owners</a>
+        <a class="nav-link" href="#">Owners</a>
       </li>
     </ul>
   </div>

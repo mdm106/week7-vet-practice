@@ -19,5 +19,10 @@ Route::get('/owners', "Owners@index");
 
 Route::get('/owners/create', "Owners@create");
 Route::post('/owners/create', "Owners@createOwner");
+
+Route::get('/owners/edit/{owner}', "Owners@showEdit");
+Route::post('/owners/edit/{owner}', "Owners@editOwner");
 //show
 Route::get('/owners/{owner}', "Owners@show");
+
+

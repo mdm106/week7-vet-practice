@@ -37,4 +37,20 @@ class Owners extends Controller
         return redirect("/owners/{$owner->id}");
     }
 
+    public function showEdit(Owner $owner)
+     {
+         return view("form", ["owner" => $owner]);
+    }
+
+    public function editOwner(OwnerRequest $request, Owner $owner)
+    {
+    //get all of the submitted data
+    $data = $request->all();
+
+    $owner->fill($data)->save();
+
+    //  redirect the browser to the new owner
+    return redirect("/owners/{$owner->id}");
+    }
+
 }

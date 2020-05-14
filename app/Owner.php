@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Owner extends Model
 {
+    //setting the fillable fields that can be filled by form submission
+    protected $fillable = ["first_name", "last_name", "telephone", "address_1", "address_2", "town", "postcode"];
+    
     //method to get fullName
     public function fullName() : string
     {

@@ -25,4 +25,12 @@ class Owner extends Model
     {
         return  substr($this->telephone, 0, 4) . " " .substr($this->telephone, 4);
     }
+
+    //setting up relationship with animals
+    //use plural because can have multiple pets
+    public function animals()
+    {
+        //use hasMany relationship method
+        return $this->hasMany(Animal::class);
+    }
 }

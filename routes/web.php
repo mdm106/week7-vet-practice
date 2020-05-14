@@ -17,5 +17,7 @@ Route::get('/', "Home@index");
 
 Route::get('/owners', "Owners@index");
 
+Route::get('/owners/create', "Owners@create");
+Route::post('/owners/create', "Owners@createOwner");
 //show
 Route::get('/owners/{owner}', "Owners@show");

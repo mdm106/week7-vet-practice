@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Owner;
+use App\Animal;
 use App\Http\Requests\OwnerRequest;
+use App\Http\Requests\AnimalRequest;
 
 class Owners extends Controller
 {
@@ -52,5 +54,21 @@ class Owners extends Controller
     //  redirect the browser to the new owner
     return redirect("/owners/{$owner->id}");
     }
+
+    public function addAnimal(AnimalRequest $request, Owner $owner)
+    {
+        //get all of the submitted data
+        $data = $request->all();
+    
+        $owner_id = ['owner_id' => $owner->id];
+    
+        $data = array_merge($data, $owner_id);
+    
+        Animal::create($data);
+    
+            //redirect the browser to the new owner
+        return redirect("/owners/{$owner->id}");
+    }
+    
 
 }

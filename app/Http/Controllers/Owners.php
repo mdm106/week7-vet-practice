@@ -40,7 +40,7 @@ class Owners extends Controller
     }
 
     public function showEdit(Owner $owner)
-     {
+    {
          return view("form", ["owner" => $owner]);
     }
 
@@ -69,6 +69,19 @@ class Owners extends Controller
             //redirect the browser to the new owner
         return redirect("/owners/{$owner->id}");
     }
+
+    public function search(Request $request)
+    {
+
+        $searchTerm = $request->query('search');
+       
+        $owners = Owner::where('first_name', 'like', $searchTerm)
+                ->orWhere('last_name', 'like', $searchTerm)
+                ->get();
+
+        return view('search', ['owners' => $owners]);
+    }
+
     
 
 }

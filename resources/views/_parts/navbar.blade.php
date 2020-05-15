@@ -18,6 +18,14 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Owners</a>
       </li>
+      <li class="nav-item">
+        <form action="/owners/search" method="get">
+            <input name="search" type="text" placeholder="Search..">
+            <button type="submit" class="btn btn-default">
+                <span class="glyphicon glyphicon-search">Here</span>
+            </button>
+        </form>
+      </li>
     </ul>
   </div>
 </nav>

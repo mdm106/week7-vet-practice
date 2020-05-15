@@ -13,17 +13,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', "Home@index");
+Route::get('/', 'Home@index');
 
-Route::get('/owners', "Owners@index");
 
-Route::get('/owners/create', "Owners@create");
-Route::post('/owners/create', "Owners@createOwner");
 
-Route::get('/owners/edit/{owner}', "Owners@showEdit");
-Route::post('/owners/edit/{owner}', "Owners@editOwner");
-//show
-Route::get('/owners/{owner}', "Owners@show");
+Route::get('/owners', 'Owners@index');
+
+Route::get('/owners/create', 'Owners@create');
+Route::post('/owners/create', 'Owners@createOwner');
+
+Route::get('/owners/search', 'Owners@search');
+//owner/edit/id
+Route::get('/owners/edit/{owner}', 'Owners@showEdit');
+Route::post('/owners/edit/{owner}', 'Owners@editOwner');
+//show owner/id
+Route::get('/owners/{owner}', 'Owners@show');
 Route::post('/owners/{owner}', 'Owners@addAnimal');
+
+
+
+// Route::get('/owners/search', )
 
 

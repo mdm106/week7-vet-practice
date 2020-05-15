@@ -15,23 +15,26 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'Home@index');
 
+Route::group(['prefix' => 'owners'], function () {
+    //put behind the auth middleware
+    //need to be logged in to use
+    Route::group(['middleware' => 'auth'], function () {
+        
+        Route::get('/create', 'Owners@create');
+        Route::post('/create', 'Owners@createOwner');
+        //owner/edit/id
+        Route::get('/edit/{owner}', 'Owners@showEdit');
+        Route::post('/edit/{owner}', 'Owners@editOwner');
+    });
+    //don't need to be logged in to view
+    Route::get('/', 'Owners@index');
+    Route::get('/search', 'Owners@search');
+    //show owner/id
+    Route::get('/{owner}', 'Owners@show');
+    Route::post('/{owner}', 'Owners@addAnimal');
+});
 
 
-Route::get('/owners', 'Owners@index');
+Auth::routes(['register' => false]);
 
-Route::get('/owners/create', 'Owners@create');
-Route::post('/owners/create', 'Owners@createOwner');
-
-Route::get('/owners/search', 'Owners@search');
-//owner/edit/id
-Route::get('/owners/edit/{owner}', 'Owners@showEdit');
-Route::post('/owners/edit/{owner}', 'Owners@editOwner');
-//show owner/id
-Route::get('/owners/{owner}', 'Owners@show');
-Route::post('/owners/{owner}', 'Owners@addAnimal');
-
-
-
-// Route::get('/owners/search', )
-
-
+Route::get('/home', 'HomeController@index')->name('home');

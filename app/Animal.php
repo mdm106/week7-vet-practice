@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Animal extends Model
 {
+
+    protected $fillable = ["name", "type", "dob", "weight_kg", "height_cm", "biteyness", "owner_id"];
     //setup the relationship with owners
     //use single because only has one owner
     public function owner()

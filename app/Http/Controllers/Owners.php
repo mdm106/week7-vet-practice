@@ -18,7 +18,8 @@ class Owners extends Controller
 
     public function show(Owner $owner)
     {
-        return view("single_owner", ["owner" => $owner]);
+        $animals = Animal::where('owner_id', '=', $owner->id)->get();
+        return view("single_owner", ["owner" => $owner], ['animals' => $animals]);
     }
 
     public function create()

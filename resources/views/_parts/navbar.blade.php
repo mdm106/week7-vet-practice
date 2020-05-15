@@ -22,10 +22,17 @@
         <form action="/owners/search" method="get">
             <input name="search" type="text" placeholder="Search..">
             <button type="submit" class="btn btn-default">
-                <span class="glyphicon glyphicon-search">Here</span>
+                <span class="glyphicon glyphicon-search"></span>
             </button>
         </form>
       </li>
     </ul>
+    <div>
+    @if (Auth::check())
+        <h4>Logged in</h3>
+    @else
+        <h4>Not logged in</h3>
+    @endif 
+    </div>
   </div>
 </nav>

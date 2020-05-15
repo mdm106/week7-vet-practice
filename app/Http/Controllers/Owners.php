@@ -7,6 +7,7 @@ use App\Owner;
 use App\Animal;
 use App\Http\Requests\OwnerRequest;
 use App\Http\Requests\AnimalRequest;
+use Auth;
 
 class Owners extends Controller
 {
@@ -82,6 +83,8 @@ class Owners extends Controller
 
         return view('search', ['owners' => $owners]);
     }
+
+    
 
     
 

@@ -24,5 +24,6 @@ Route::get('/owners/edit/{owner}', "Owners@showEdit");
 Route::post('/owners/edit/{owner}', "Owners@editOwner");
 //show
 Route::get('/owners/{owner}', "Owners@show");
+Route::post('/owners/{owner}', 'Owners@addAnimal');
 
 

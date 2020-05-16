@@ -5,6 +5,6 @@
 @section('content')
     @include('_parts/heading')
     <div class="container">
-        <p class="mt-4">Good {{ $greeting }}</p>
+        <p class="mt-4">{{ $greeting }} {{ $user->name ?? ""}}</p>
     </div>
 @endsection

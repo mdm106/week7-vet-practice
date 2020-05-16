@@ -12,14 +12,15 @@ class Home extends Controller
         $timezone = date("e"); // to set timezone 
         $timeOfDay = "";
         if($currentHour < 12) {
-            $timeOfDay="Morning";
+            $timeOfDay="Good Morning";
         } elseif($currentHour < 17) {
-            $timeOfDay="Afternoon";
+            $timeOfDay="Good Afternoon";
         } elseif($currentHour < 22) {
-            $timeOfDay="Evening";
+            $timeOfDay="Good Evening";
         } else{
-            $timeOfDay="Night";
+            $timeOfDay="Good Night";
         }
+        
         return view("welcome", ["greeting" => $timeOfDay]);
     }
 }

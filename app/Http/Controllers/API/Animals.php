@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\AnimalRequest as Request;
 use App\Animal;
+use App\Http\Resources\API\AnimalResource;
 
 class Animals extends Controller
 {
@@ -28,7 +29,12 @@ class Animals extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        return Animal::create($data);
+
+        //store owner in a variable
+        $animal = Animal::create($data);
+
+        //return the resource
+        return new AnimalResource($animal);
     }
 
     /**
@@ -39,7 +45,7 @@ class Animals extends Controller
      */
     public function show(Animal $animal)
     {
-        return $animal;
+        return new AnimalResource($animal);
     }
 
     /**
@@ -58,7 +64,7 @@ class Animals extends Controller
         $animal->fill($data)->save();
 
         //return the updated version
-        return $animal;
+        return new AnimalResource($animal);
     }
 
     /**

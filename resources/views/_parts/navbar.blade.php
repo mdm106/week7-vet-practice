@@ -7,16 +7,16 @@
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav mr-auto w-100">
       <li class="nav-item">
-        <a id="override" class="nav-link" href="#">Home</a>
+        <a id="override" class="nav-link" href="http://vet-practice/">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">About us</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Services</a>
+        <a class="nav-link" href="http://vet-practice/owners">Owners</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Owners</a>
+        <a class="nav-link" href="http://vet-practice/owners/create">Add owner</a>
       </li>
       <li class="nav-item">
         <form action="/owners/search" method="get">

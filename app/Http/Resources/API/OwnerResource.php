@@ -18,7 +18,7 @@ class OwnerResource extends JsonResource
         return [
             "id" => $this->id,
             "name" => "{$this->first_name} {$this->last_name}",
-            "address" => "{$this->address_1}, {$this->address_2}, {$this->town},{$this->postcode}",
+            "address" => "{$this->address_1}, {$this->address_2}, {$this->town}, {$this->postcode}",
             "animals" => Animal::where('owner_id', '=', $this->id)->pluck('name'),
         ];
     }

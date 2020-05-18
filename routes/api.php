@@ -27,3 +27,12 @@ Route::delete('/owners/{owner}', 'API\\Owners@destroy');
 Route::post('/owners', 'API\\Owners@store');
 
 Route::put('/owners/{owner}', 'API\\Owners@update');
+
+Route::get('/animals', 'API\\Animals@index');
+Route::get('/animals/{animal}', 'API\\Animals@show');
+
+Route::delete('/animals/{animal}', 'API\\Animals@destroy');
+
+Route::post('/animals', 'API\\Animals@store');
+
+Route::put('/animals/{animal}', 'API\\Animals@update');

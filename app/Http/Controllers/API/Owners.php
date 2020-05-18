@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\OwnerRequest as Request;
 use App\Owner;
+use App\Http\Resources\API\OwnerResource;
 
 class Owners extends Controller
 {
@@ -31,10 +32,11 @@ class Owners extends Controller
         //returns an array of all the data the user sent
         $data = $request->all();
 
-        // create article with data and store in DB
-        // and return it as JSON
-        // automatically gets 201 status as it's a POST request
-        return Owner::create($data);
+        //store owner in a variable
+        $owner = Owner::create($data);
+
+        //return the resource
+        return new OwnerResource($owner);
     }
 
     /**
@@ -45,8 +47,8 @@ class Owners extends Controller
      */
     public function show(Owner $owner)
     {
-        //just return the owner
-        return $owner;
+        //just return the owner resource
+        return new OwnerResource($owner);
     }
 
     /**
@@ -65,7 +67,7 @@ class Owners extends Controller
         $owner->fill($data)->save();
 
         //return the updated version
-        return $owner;
+        return new OwnerResource($owner);
     }
 
     /**

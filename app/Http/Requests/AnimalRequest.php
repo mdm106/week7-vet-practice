@@ -28,7 +28,7 @@ class AnimalRequest extends FormRequest
             "type" => ["required", "string", "max:50"],
             "dob" => ["required", "date"],
             "weight_kg" => ["required", "numeric"],
-            "height_cm" => ["required", "numeric"],//nullable because this field is not required/can be null
+            "height_cm" => ["required", "numeric"],
             "biteyness" => ["required", "integer", "between:1,5"],
         ];
     }

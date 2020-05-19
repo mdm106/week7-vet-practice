@@ -36,3 +36,6 @@ Route::delete('/animals/{animal}', 'API\\Animals@destroy');
 Route::post('/animals', 'API\\Animals@store');
 
 Route::put('/animals/{animal}', 'API\\Animals@update');
+
+Route::get('/owners/{owner}/animals', 'API\\Owners\\Animals@show');
+Route::post('/owners/{owner}/animals', 'API\\Owners\\Animals@store');

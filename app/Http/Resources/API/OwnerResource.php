@@ -3,7 +3,6 @@
 namespace App\Http\Resources\API;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Animal;
 
 class OwnerResource extends JsonResource
 {
@@ -19,7 +18,7 @@ class OwnerResource extends JsonResource
             "id" => $this->id,
             "name" => $this->fullName(),
             "address" => $this->fullAddress(),
-            "animals" => Animal::where('owner_id', '=', $this->id)->pluck('name'),
+            "animals" => $this->animals->pluck('name')
         ];
     }
 }

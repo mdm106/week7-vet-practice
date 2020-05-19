@@ -33,4 +33,14 @@ class Owner extends Model
         //use hasMany relationship method
         return $this->hasMany(Animal::class);
     }
+
+    public function validPhoneNumber()
+    {
+        return (strlen($this->telephone) >= 11 && strlen($this->telephone) <= 14);
+    }
+
+    public function numberOfPets()
+    {
+        return count($this->animals);
+    }
 }

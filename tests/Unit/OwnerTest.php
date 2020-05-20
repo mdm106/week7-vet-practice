@@ -7,6 +7,7 @@ use App\Owner;
 use App\Animal;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
+
 class OwnerTest extends TestCase
 {
     //****need address fields and biteyness to be made nullable for duration of the tests****
@@ -43,37 +44,28 @@ class OwnerTest extends TestCase
     }
 
     public function testTelephone()
-    {   
-        $nonValidNumbers = ["011285975864787979", "01128597"];
-        $validNumbers = ["0112 851-89745", "0112 85977856", "01178546953"];
+	{
+		$owner1 = factory(Owner::class)->make([]);
+
+		$owner2 = factory(Owner::class)->make([]);
+
+		$owner3 = factory(Owner::class)->make([
+			'telephone' => '0146464646546545646' /// too long
+        ]);
         
-        //non valid numbers
-        foreach($nonValidNumbers as $number) {
-            $this->owner->telephone = $number;
-            $this->assertFalse($this->owner->validPhoneNumber());
-        }
+        $owner3 = factory(Owner::class)->make([
+			'telephone' => '01464' /// too short
+		]);
 
-        //valid Numbers
-        foreach($validNumbers as $number) {
-            $this->owner->telephone = $number;
-            $this->assertTrue($this->owner->validPhoneNumber());
-        }
-
-    }
+		$this->assertTrue($owner1->validPhoneNumber());
+		$this->assertTrue($owner2->validPhoneNumber());
+		$this->assertFalse($owner3->validPhoneNumber());
+	}
 
     public function testOwnerDatabase()
     {   
-        //add a owner to the database using the set up owner above
-        Owner::create([
-            "first_name" => "Louis",
-            "last_name" => "Theroux",
-            "telephone" => "01178546953",
-            "address_1" => "1 Documentary Lane",
-            "address_2" => "TV ville",
-            "town" => "Programme Town",
-            "postcode" => "TV1 2BC",
-            "bad" => "bad one",
-        ]);
+        $owner = factory(Owner::class)->create(["first_name" => "Louis", "last_name" => "Theroux"]);
+       
         //get the first owner back from the database
         $ownerFromDB = Owner::all()->first();
 
@@ -84,52 +76,38 @@ class OwnerTest extends TestCase
 
     public function testNumberOfPets()
     {   
-        //add a owner to the database using the set up owner above
-        Owner::create([
-            "first_name" => "Louis",
-            "last_name" => "Theroux",
-            "telephone" => "01178546953",
-            "address_1" => "1 Documentary Lane",
-            "address_2" => "TV ville",
-            "town" => "Programme Town",
-            "postcode" => "TV1 2BC",
-            "bad" => "bad one",
-        ]);
+        // use factory to generate owner (no pet)
+		$owner1 = factory(\App\Owner::class)->create();
 
-        //get the first owner back from the database
-        $ownerFromDB = Owner::all()->first();
+		// use factory to generate owner
+		$owner2 = factory(\App\Owner::class)->create();
+		// add 1 pet
+		$this->addAnimalsToOwner($owner2, 1);
 
-        //check the number of pets match - none added yet
-        $this->assertSame(0, $ownerFromDB->numberOfPets()); 
-    
-        Animal::create([
-                "name"=> "Fluffy",
-                "type"=> "Shark",
-                "dob"=>"2010-12-31",
-                "weight_kg"=> "250.2",
-                "height_cm"=>"99.9",
-                "owner_id"=> $ownerFromDB->id,
-                "biteyness"=>"5"
-        ]);
+		// use factory to generate owner
+		$owner3 = factory(\App\Owner::class)->create();
+		// add 3 pets/animals
+		$this->addAnimalsToOwner($owner3, 3);
 
-        $ownerFromDB = Owner::all()->first();
-        //check the number of pets match - one now added
-        $this->assertSame(1, $ownerFromDB->numberOfPets()); 
-
-        Animal::create([
-            "name"=> "Rover",
-            "type"=> "Dog",
-            "dob"=>"2010-12-31",
-            "weight_kg"=> "20.2",
-            "height_cm"=>"15.5",
-            "owner_id"=> $ownerFromDB->id,
-            "biteyness"=>"2"
-        ]);
-
-        $ownerFromDB = Owner::all()->first();
-        //check the number of pets match - one now added
-        $this->assertSame(2, $ownerFromDB->numberOfPets());
-
+		// test pet count is correct
+		$this->assertSame(0, $owner1->numberOfPets());
+		$this->assertSame(1, $owner2->numberOfPets());
+		$this->assertSame(3, $owner3->numberOfPets());
     }
+
+    /**
+	 * helper to attach animals to owner model
+	 *
+	 * @param Owner $owner
+	 * @param int $numOfAnimals
+	 * @return void
+	 */
+	public function addAnimalsToOwner(Owner $owner, $numOfAnimals) : void
+	{
+		$owner->animals()->createMany(
+			factory(\App\Animal::class, $numOfAnimals)->make()->toArray()
+		);
+		$owner->save();
+	}
 
 }

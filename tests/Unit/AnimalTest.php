@@ -7,33 +7,24 @@ use App\Animal;
 
 class AnimalTest extends TestCase
 {
-    public function setUp() : void
-    {
-        // make sure we call the parent's setUp() method
-        parent::setUp();
-        // setup the owner
-        $this->animal = new Animal([
-            "name" => "Big Ears",
-            "type" => "Hamster",
-            "dob"=> "2018-12-31",
-            "weight_kg"=> "1.2",
-            "height_cm"=> "5.4",
-            "owner_id"=> 107,
-            "biteyness"=> "1",
-        ]);
-    }
-
-    public function testBiteyness()
+    public function testDangerous()
     {
 
-        $this->assertSame(false, $this->animal->dangerous()); //biteyness = 1 as in set up
-        $this->animal->biteyness = 2; 
-        $this->assertSame(false, $this->animal->dangerous()); 
-        $this->animal->biteyness = 3; 
-        $this->assertSame(true, $this->animal->dangerous());
-        $this->animal->biteyness = 4;
-        $this->assertSame(true, $this->animal->dangerous());
-        $this->animal->biteyness = 5;
-        $this->assertSame(true, $this->animal->dangerous());
+        // Given I have 5 animals with biteyness 1 through 5
+		$animals = factory(Animal::class, 5)
+		->make()
+		->each(function ($animal, $key) {
+			$animal->biteyness = $key + 1; // Set bitness to 1 to 5
+		});
+
+		//Then
+		// Bitneyness under 4 should be false
+		for ($i=0; $i < 2; $i++) {
+			$this->assertFalse($animals[$i]->dangerous(), "Animal id = {$i}");
+		}
+		// Bitneyness over 4 should be true
+		for ($i=2; $i < 5; $i++) {
+			$this->assertTrue($animals[$i]->dangerous(), "Animal id = {$i}");
+		}
     }
 }

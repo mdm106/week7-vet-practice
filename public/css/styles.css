@@ -17,3 +17,10 @@ nav {
 small {
     color: gold;
 }
+
+img {
+    width: 60%;
+    display: block;
+    margin: auto;
+    padding-bottom: 2rem;
+}

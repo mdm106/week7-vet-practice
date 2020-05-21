@@ -17,11 +17,13 @@ class AnimalResource extends JsonResource
         return [
             "id" => $this->id,
             "name" => $this->name,
+            "type" => $this->type,
             "dob" => $this->dob,
             "weight" => $this->weight_kg,
             "height" => $this->height_kg,
             "biteyness" => $this->biteyness,
-            "owner" => $this->owner->fullName()
+            "owner" => $this->owner->fullName(),
+            "treatments" => $this->treatments->pluck('name'),
         ];
     }
 }

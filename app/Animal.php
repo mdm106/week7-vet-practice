@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Animal extends Model
 {
 
-    protected $fillable = ["name", "type", "dob", "weight_kg", "height_cm", "biteyness", "owner_id"];
+    protected $fillable = ["name", "type", "dob", "weight_kg", "height_cm", "biteyness", "owner_id", "treatments"];
     //setup the relationship with owners
     //use single because only has one owner
     public function owner()
@@ -24,5 +24,17 @@ class Animal extends Model
     public function treatments()
     {
         return $this->belongsToMany(Treatment::class);
+    }
+
+    public function addTreatments(array $strings) : Animal
+    {
+        $treatments = Treatment::fromStrings($strings);
+
+        //we're on an animal instance, so use $this
+        //pass in collection of IDs
+        $this->treatments()->sync($treatments->pluck("id"));
+
+        //return $this in case we want to chain
+        return $this;
     }
 }

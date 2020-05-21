@@ -20,4 +20,9 @@ class Animal extends Model
     {
         return $this->biteyness >= 3;
     }
+
+    public function treatments()
+    {
+        return $this->belongsToMany(Treatment::class);
+    }
 }

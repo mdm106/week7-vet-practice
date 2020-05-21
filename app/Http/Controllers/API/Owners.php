@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\OwnerRequest as Request;
+use App\Http\Requests\API\OwnerStoreRequest as Request;
 use App\Owner;
 use App\Http\Resources\API\OwnerResource;
 

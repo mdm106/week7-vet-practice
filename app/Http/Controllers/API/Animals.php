@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\AnimalRequest as Request;
+use App\Http\Requests\API\AnimalStoreRequest as Request;
 use App\Animal;
 use App\Http\Resources\API\AnimalResource;
 

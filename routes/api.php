@@ -19,23 +19,28 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/owners', 'API\\Owners@index')->middleware('auth:api');
-Route::get('/owners/{owner}', 'API\\Owners@show')->middleware('auth:api');
+Route::group(["prefix" => "/owners", "middleware" => ["auth:api"],], function() {
+    Route::get('', 'API\\Owners@index');
+    Route::get('/{owner}', 'API\\Owners@show');
+    Route::delete('/{owner}', 'API\\Owners@destroy');
+    Route::post('', 'API\\Owners@store');
+    Route::put('/{owner}', 'API\\Owners@update');
+    Route::get('/{owner}/animals', 'API\\Owners\\Animals@show');
+    Route::post('/{owner}/animals', 'API\\Owners\\Animals@store');
 
-Route::delete('/owners/{owner}', 'API\\Owners@destroy')->middleware('auth:api');
+});
 
-Route::post('/owners', 'API\\Owners@store')->middleware('auth:api');
+Route::group(["prefix" => "/animals", "middleware" => ["auth:api"],], function() {
+    Route::get('', 'API\\Animals@index');
+    Route::get('/{animal}', 'API\\Animals@show');
 
-Route::put('/owners/{owner}', 'API\\Owners@update')->middleware('auth:api');
+    Route::delete('/{animal}', 'API\\Animals@destroy');
 
-Route::get('/animals', 'API\\Animals@index')->middleware('auth:api');
-Route::get('/animals/{animal}', 'API\\Animals@show')->middleware('auth:api');
+    Route::post('', 'API\\Animals@store');
 
-Route::delete('/animals/{animal}', 'API\\Animals@destroy')->middleware('auth:api');
+    Route::put('/{animal}', 'API\\Animals@update');
 
-Route::post('/animals', 'API\\Animals@store')->middleware('auth:api');
+});
 
-Route::put('/animals/{animal}', 'API\\Animals@update')->middleware('auth:api');
 
-Route::get('/owners/{owner}/animals', 'API\\Owners\\Animals@show')->middleware('auth:api');
-Route::post('/owners/{owner}/animals', 'API\\Owners\\Animals@store')->middleware('auth:api');
+

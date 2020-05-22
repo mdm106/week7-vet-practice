@@ -34,6 +34,8 @@ Route::group(['prefix' => 'owners'], function () {
     Route::post('/{owner}', 'Owners@addAnimal');
 });
 
+Route::get('/animals', 'Animals@index');
+
 
 Auth::routes(['register' => false]);
 

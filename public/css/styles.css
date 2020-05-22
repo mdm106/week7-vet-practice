@@ -28,3 +28,19 @@ img {
 .col-md-8 {
     padding-bottom: 2rem;
 }
+
+.mt-3 span {
+    font-weight: bold;
+}
+
+.danger {
+    color: red;
+}
+
+.safe {
+    color: green;
+}
+
+.indent {
+    padding-left: 1rem;
+}

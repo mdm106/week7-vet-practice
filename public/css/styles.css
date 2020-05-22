@@ -24,3 +24,7 @@ img {
     margin: auto;
     padding-bottom: 2rem;
 }
+
+.col-md-8 {
+    padding-bottom: 2rem;
+}

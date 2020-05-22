@@ -32,9 +32,13 @@
     </ul>
     <div>
     @if (Auth::check())
-        <h4>Logged in</h3>
+          <button class="btn btn-danger">
+            <a href="{{ url('/logout') }}"> Logout </a>
+          </button>
     @else
-        <h4>Not logged in</h3>
+        <button class="btn btn-success">
+            <a href="{{ url('/login') }}"> Login </a>
+          </button>
     @endif 
     </div>
   </div>

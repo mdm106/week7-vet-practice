@@ -41,3 +41,4 @@ Route::get('/animals/{animal}', 'Animals@show');
 Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/logout', 'Home@logout');

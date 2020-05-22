@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class Home extends Controller
 {
@@ -22,5 +23,12 @@ class Home extends Controller
         }
         
         return view("welcome", ["greeting" => $timeOfDay]);
+    }
+
+    public function logout()
+    {
+        //logout user
+        Auth::logout();
+        return redirect('/');
     }
 }

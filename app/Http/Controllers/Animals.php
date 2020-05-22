@@ -16,4 +16,9 @@ class Animals extends Controller
         $animals = Animal::paginate(5);
         return view("animals", ["animals" => $animals]);
     }
+
+    public function show(Animal $animal)
+    {
+        return view("single_animal", ["animal" => $animal]);
+    }
 }

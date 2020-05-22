@@ -16,6 +16,9 @@
         <a class="nav-link" href="http://vet-practice/owners">Owners</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="http://vet-practice/animals">Animals</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="http://vet-practice/owners/create">Add owner</a>
       </li>
       <li class="nav-item">
